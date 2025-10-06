@@ -7,7 +7,14 @@
 </head>
 <body>
     <h1>Bienvenido <?php echo $_SESSION['user']->getUsername(); ?></h1>
-    <h1>ARTICULO</h1>
+    <h1>ARTICULOS</h1>
+    <?php
+    foreach($posts as $post) {
+        echo "<h2><a href='index.php?c=article&id=".$post->getId()."'>".$post->getTitle()."</a></h2>";
+    }
+    ?>
+    <a href='index.php?c=article&a=addpost'>Crear Articulo</a>
+    <br><br>
     <a href='index.php?c=login&logout=1'>Cerrar Sesion</a>
 </body>
 </html>

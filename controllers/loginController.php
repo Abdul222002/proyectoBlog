@@ -1,7 +1,4 @@
 <?php
-$q2="SELECT * FROM users";
-$result2=$db->query($q2);
-
 if(isset($_GET['logout'])){
     $_SESSION['user']=false;
     header('Location:index.php');
@@ -13,11 +10,11 @@ if(!isset($_SESSION['user'])){
 }
 
 
+// SI PULSA EL BOTÓN LOGIN
 if(isset($_POST['username']) && isset($_POST['password'])){
-    $q2="SELECT * FROM users WHERE username='".$_POST['username']."' AND password='".md5($_POST['password'])."'";
-    $result2=$db->query($q2);
-    if($row=mysqli_fetch_assoc($result2)){
-            $_SESSION['user']=new User($row['id'], $row['username'], $row['email'], $row['password']);
+    $user = LoginRepository::getUser($_POST['username'], md5($_POST['password']));
+    if($user){
+        $_SESSION['user'] = $user;
             header('location:index.php');
         }
     }
@@ -53,10 +50,9 @@ if (isset($_POST['Registrar'])) {
             }
 
             // INSERTAR USUARIO EN LA BASE DE DATOS
-            $q3 = "INSERT INTO users (username, email, password) VALUES ('" . $_POST['newUsername'] . "','" . $_POST['newEmail'] . "','" . md5($_POST['newPassword']) . "')";
-            $result3 = $db->query($q3);
-            if ($result3) {
-                echo "<script>alert('Usuario registrado con éxito.');</script>";
+            $created = LoginRepository::createUser($_POST['newUsername'], md5($_POST['newPassword']), md5($_POST['confirmPassword']), $_POST['newEmail']);
+            if ($created) {
+                echo "<script>alert('Usuario registrado con éxito.'); window.location.href='index.php';</script>";
             } else {
                 echo "<script>alert('Error al registrar el usuario.');</script>";
             }

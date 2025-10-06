@@ -2,14 +2,14 @@
 
 //cargar modelo
 require_once('models/User.php');
-require_once('models/Article.php');
-
-$db = Connection::connect();
+require_once('models/Post.php');
+require_once('models/PostRepository.php');
+require_once('models/LoginRepository.php');
 
 session_start();
+$db = Connection::connect();
 
-
-// cargar vista     if(isset($_SESSION['user'])&& $_SESSION['user']){
+// cargar vista
 if(isset($_GET['c'])){
     require_once('controllers/'.$_GET['c'].'Controller.php');
 }else{

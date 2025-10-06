@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <?php
+    echo "<h1>".$post->getTitle()."</h1>";
+    echo "<p>".$post->getText()."</p>";
+    echo "<p>Creado por: ".$post->getAuthor()."</p>";
+    echo "<p>Fecha: ".$post->getDate()."</p>";
+    echo "<a href='index.php?c=article'>Volver</a>";
+    ?>
+</body>
+</html> 
