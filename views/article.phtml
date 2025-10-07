@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="styles/styles.css">
 </head>
 <body>
     <h1>Bienvenido <?php echo $_SESSION['user']->getUsername(); ?></h1>
@@ -11,8 +12,10 @@
     <?php
     foreach($posts as $post) {
         echo "<h2><a href='index.php?c=article&id=".$post->getId()."'>".$post->getTitle()."</a></h2>";
+        echo "<a href='index.php?c=article&delete=true&id=".$post->getId()."'>Eliminar</a>";
     }
     ?>
+    <br><br>
     <a href='index.php?c=article&a=addpost'>Crear Articulo</a>
     <br><br>
     <a href='index.php?c=login&logout=1'>Cerrar Sesion</a>

@@ -28,7 +28,7 @@ class PostRepository {
     public static function getPostById($id) {
         $db = Connection::connect();
         $q = "SELECT * FROM article WHERE id=" . $id;
-        $result = $db->query($q);
+        $result = $db->query($q);   
         if ($row = mysqli_fetch_assoc($result)) {
             return new Post($row['id'], $row['title'], $row['text'], $row['author'], $row['date']);
         }

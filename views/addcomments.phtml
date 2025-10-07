@@ -7,19 +7,14 @@
     <link rel="stylesheet" href="styles/styles.css">
 </head>
 <body>
-    <h1>Bienvenido <?php echo $_SESSION['user']->getUsername(); ?></h1>
-    <h1>CREAR ARTICULO</h1>
-    <form action="index.php?c=article&a=addpost" method="post">
-        <label for="title">Titulo:</label>
-        <input type="text" id="title" name="title">
-        <br>
-        <label for="text">Contenido:</label>
+    <h1>Comentarios</h1>
+    <form action="index.php?c=article&a=addComment&id=<?php echo $_GET['id']; ?>" method="post">
+        <label for="text">Comentario:</label>
         <textarea id="text" name="text"></textarea>
         <br>
         <input type="submit" value="Guardar" name="Guardar">
     </form>
     <br>
     <a href='index.php?c=article'>Volver</a>
-    
 </body>
 </html>

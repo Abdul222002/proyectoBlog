@@ -5,6 +5,9 @@ require_once('models/User.php');
 require_once('models/Post.php');
 require_once('models/PostRepository.php');
 require_once('models/LoginRepository.php');
+require_once('models/CommentRepository.php');
+require_once('models/Coment.php');
+
 
 session_start();
 $db = Connection::connect();

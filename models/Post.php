@@ -1,6 +1,5 @@
 
 <?php
-
 class Post{
 
     private $id;
@@ -27,12 +26,13 @@ class Post{
         return $this->text;
     }
     public function getAuthor(){
-        return $this->author;
+        return LoginRepository::getUserById($this->author);
     }
     public function getDate(){
         return $this->date;
     }
-
+    public function getComments(){
+        return CommentRepository::getCommentsByPostId($this->id);
+    }
 }
-
-?>
+?>                              

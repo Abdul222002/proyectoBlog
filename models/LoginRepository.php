@@ -21,6 +21,15 @@ class LoginRepository {
         return $db->query($q);
     }
 
+    public static function getUserById($id) {
+        $db = Connection::connect();
+        $q = "SELECT * FROM users WHERE id=" . $id;
+        $result = $db->query($q);
+        if ($row = mysqli_fetch_assoc($result)) {
+            return new User($row['id'], $row['username'], $row['password'], $row['email']);
+        }
+        return null;
+    }
 }
 
 ?>

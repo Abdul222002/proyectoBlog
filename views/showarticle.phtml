@@ -4,14 +4,30 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="styles/styles.css">
 </head>
 <body>
     <?php
     echo "<h1>".$post->getTitle()."</h1>";
     echo "<p>".$post->getText()."</p>";
-    echo "<p>Creado por: ".$post->getAuthor()."</p>";
+    echo "<p>Creado por: ".$post->getAuthor()->getUsername()."</p>";
     echo "<p>Fecha: ".$post->getDate()."</p>";
-    echo "<a href='index.php?c=article'>Volver</a>";
+    echo "<br>";
+    echo "<a href='index.php?c=article&addComment=true&id=".$post->getId()."'>Añadir comentario</a>";
+    echo "<h2>Comentarios:</h2>";
+    $comments = $post->getComments();
+    if (empty($comments)) {
+        echo "<p>No hay comentarios aún.</p>";
+    }else {
+    foreach($comments as $comment) {
+            echo "<p>".$comment->getText()."</p>";
+            echo "<p>Creado por: ".$comment->getAuthorId()->getUsername()."</p>";
+            echo "<p>Fecha: ".$comment->getDate()."</p>";
+            echo "<a href='index.php?c=article&deleteComment=true&idComment=".$comment->getId()."&postId=".$post->getId()."&postUserId=".$post->getAuthor()->getId()."'>Eliminar comentario</a>";
+            echo "<br>";
+    }
+    echo "<br>";
+    echo "<a href='index.php?c=article'>Volver</a>";}
     ?>
 </body>
 </html> 
